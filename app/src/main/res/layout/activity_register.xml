@@ -20,11 +20,11 @@
         app:srcCompat="@drawable/dowbn"
         tools:ignore="MissingConstraints" />
     <TextView
-        android:id="@+id/tv_Login"
+        android:id="@+id/tv_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/iv_Learn"
-        android:text="Login screen"
+        android:text="Register screen"
         android:textSize="25dp"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="84dp"
@@ -39,7 +39,7 @@
         android:layout_marginTop="35dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_Login"
+        app:layout_constraintTop_toBottomOf="@+id/tv_register"
         tools:ignore="MissingConstraints"
         android:hint="Email id">
 
@@ -63,7 +63,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/til_login_email"
         tools:ignore="MissingConstraints"
-        android:hint="password">
+        android:hint="Password">
 
         <EditText
             android:id="@+id/et_login_password"
@@ -75,7 +75,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/btn_login"
+        android:id="@+id/btn_register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -83,7 +83,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:gravity="center"
-        android:text="Login"
+        android:text="Register"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/til_login_password"
@@ -97,7 +97,7 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_login">
+        app:layout_constraintTop_toBottomOf="@id/btn_register">
 
         <TextView
             android:id="@+id/tv_dont_have_account"
@@ -105,16 +105,16 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:padding="5dp"
-            android:text="Don\'t have an account?"
+            android:text="Already have an account?"
             />
         <TextView
-            android:id="@+id/tv_register_new"
+            android:id="@+id/tv_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:foreground="?attr/selectableItemBackground"
             android:padding="5dp"
-            android:text="Register"
+            android:text="Login"
             android:textStyle="bold"
             />
     </androidx.appcompat.widget.LinearLayoutCompat>
