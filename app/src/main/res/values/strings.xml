@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">EnglishLearningApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_bottom_nav">bottomNavActivity</string>
+    <string name="title_learn">Learn</string>
+    <string name="title_practice">Practice words</string>
+    <string name="title_stats">Stats</string>
+    <string name="button_next">Next word</string>
 </resources>

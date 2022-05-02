@@ -10,10 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EnglishLearningApp">
         <activity
-            android:name=".RegisterActivity"
-            android:exported="true">
+            android:name=".bottomNavActivity"
+            android:exported="false"
+            android:label="@string/title_activity_bottom_nav" />
 
-        </activity>>
+        <meta-data
+            android:name="com.google.android.actions"
+            android:resource="@xml/styles" />
+
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="true" />
         <activity
             android:name=".LoginActivity"
             android:exported="true">
@@ -25,7 +32,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
     </application>
 
 </manifest>

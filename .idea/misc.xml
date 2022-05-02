@@ -5,6 +5,19 @@
       <map>
         <entry key="..\:/DISK_D/Artem_new/Android/EnglishLearningApp/app/src/main/res/layout/activity_login.xml" value="0.20364583333333333" />
         <entry key="..\:/DISK_D/Artem_new/Android/EnglishLearningApp/app/src/main/res/layout/activity_register.xml" value="0.15492957746478872" />
+        <entry key="..\:/Users/m1910382/StudioProjects/EnglishLearningApp/app/src/main/res/layout/activity_bottom_nav.xml" value="0.22" />
+        <entry key="..\:/Users/m1910382/StudioProjects/EnglishLearningApp/app/src/main/res/layout/activity_login.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/m1910382/StudioProjects/EnglishLearningApp/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/m1910382/StudioProjects/EnglishLearningApp/app/src/main/res/layout/fragment_dashboard.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/m1910382/StudioProjects/EnglishLearningApp/app/src/main/res/layout/fragment_first.xml" value="0.33" />
+        <entry key="..\:/Users/m1910382/StudioProjects/EnglishLearningApp/app/src/main/res/layout/fragment_home.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/m1910382/StudioProjects/EnglishLearningApp/app/src/main/res/layout/fragment_learn.xml" value="0.22" />
+        <entry key="..\:/Users/m1910382/StudioProjects/EnglishLearningApp/app/src/main/res/layout/fragment_notifications.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/m1910382/StudioProjects/EnglishLearningApp/app/src/main/res/layout/fragment_practice.xml" value="0.25" />
+        <entry key="..\:/Users/m1910382/StudioProjects/EnglishLearningApp/app/src/main/res/layout/fragment_second.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/m1910382/StudioProjects/EnglishLearningApp/app/src/main/res/layout/fragment_third.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/m1910382/StudioProjects/EnglishLearningApp/app/src/main/res/menu/bottom_menu.xml" value="0.3072916666666667" />
+        <entry key="..\:/Users/m1910382/StudioProjects/EnglishLearningApp/app/src/main/res/menu/bottom_nav_menu.xml" value="0.18802083333333333" />
       </map>
     </option>
   </component>
