@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_learn"
+        android:icon="@drawable/ic_baseline_work_24"
+        android:title="@string/title_learn" />
+
+    <item
+        android:id="@+id/navigation_practice"
+        android:icon="@drawable/ic_baseline_play_arrow_24"
+        android:title="@string/title_practice" />
+
+    <item
+        android:id="@+id/navigation_stats"
+        android:icon="@drawable/ic_baseline_bar_chart_24"
+        android:title="@string/title_stats" />
+
+</menu>
