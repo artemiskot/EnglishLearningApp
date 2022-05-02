@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_learn">
+
+    <fragment
+        android:id="@+id/navigation_learn"
+        android:name="com.englishlearningapp.ui.Learn.LearnFragment"
+        android:label="@string/title_learn"
+        tools:layout="@layout/fragment_learn" />
+
+    <fragment
+        android:id="@+id/navigation_practice"
+        android:name="com.englishlearningapp.ui.Practice.PracticeFragment"
+        android:label="@string/title_practice"
+        tools:layout="@layout/fragment_practice" />
+
+    <fragment
+        android:id="@+id/navigation_stats"
+        android:name="com.englishlearningapp.ui.Statistics.StatisticsFragment"
+        android:label="@string/title_stats"
+        tools:layout="@layout/fragment_statistics" />
+</navigation>
