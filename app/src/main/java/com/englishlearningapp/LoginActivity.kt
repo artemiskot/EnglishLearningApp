@@ -1,22 +1,27 @@
 package com.englishlearningapp
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
+import com.englishlearningapp.data.WordDao
+import com.englishlearningapp.data.WordDatabase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_login.et_login_email
-import kotlinx.android.synthetic.main.activity_login.et_login_password
-import kotlinx.android.synthetic.main.activity_register.*
+import kotlinx.coroutines.launch
+
 
 class LoginActivity : AppCompatActivity() {
+
+    private lateinit var db: WordDatabase
+    private lateinit var dao: WordDao
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
         tv_register_new.setOnClickListener {
             startActivity(
                 Intent(
@@ -78,5 +83,5 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
         }
-    }
+}
 
