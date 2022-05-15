@@ -31,4 +31,4 @@ Otherwise you get Toast that your answer was correct
   
 # Stats Section aka StatiscticsFragment
 This fragment was created to count all your recordings of your practice fragment answers but I actually have no time to finish it asap so TBD :D
-<img width="291" alt="image" src="![statisticsFragment](https://user-images.githubusercontent.com/61650907/168495351-4c320998-9ee1-4524-b314-89d7770f5111.jpg)">
+<img width="291" alt="image" src="https://user-images.githubusercontent.com/61650907/168495351-4c320998-9ee1-4524-b314-89d7770f5111.jpg">
