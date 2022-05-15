@@ -20,14 +20,14 @@ If you are in this section but already have account in this app you can get to L
 
 # Learning Section aka LearnFragment
 In this section your goal is to learn words and how they are written. Every word is gotten by query to local(!) Room database that is prepopulated on a first app entry.
-<img width="291" alt="image" src="![LearnFragment](https://user-images.githubusercontent.com/61650907/168495330-d2a1f1a4-654f-4b06-8c15-f1af1f7a1015.jpg)">
+<img width="291" alt="image" src="https://user-images.githubusercontent.com/61650907/168495330-d2a1f1a4-654f-4b06-8c15-f1af1f7a1015.jpg">
 
 # Practice Section aka PracticeFragment
 Here you are given an english word and 4 buttons with Russian translation. Each russian word is unique and could not be the same. One is always correct. It is meant that you have learnt all words so you'll be able to play here
 In case of wrong selection of translation you get toast with correct answer 
-<img width="291" alt="image" src="![wrongWordPractice](https://user-images.githubusercontent.com/61650907/168495335-d0db6eff-ee04-44df-97ab-53a8c87d8248.jpg)">
+<img width="291" alt="image" src="https://user-images.githubusercontent.com/61650907/168495335-d0db6eff-ee04-44df-97ab-53a8c87d8248.jpg">
 Otherwise you get Toast that your answer was correct
-<img width="291" alt="image" src="![correctWordPractice](https://user-images.githubusercontent.com/61650907/168495341-8034e438-db21-47ab-8700-670720e3c0ac.jpg)">
+<img width="291" alt="image" src="https://user-images.githubusercontent.com/61650907/168495341-8034e438-db21-47ab-8700-670720e3c0ac.jpg">
   
 # Stats Section aka StatiscticsFragment
 This fragment was created to count all your recordings of your practice fragment answers but I actually have no time to finish it asap so TBD :D
