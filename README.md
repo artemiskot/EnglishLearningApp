@@ -8,7 +8,7 @@ Also used Flow<Object> type in Room DB that is made to replace Java's LiveData. 
 At first we get into Login screen
 I used Firebase auth to verify user
 In case of invalid fillment of email we get Toast which explains error to user
-<img width="291" alt="image" src="![LoginBad](https://user-images.githubusercontent.com/61650907/168495313-d8728589-a91c-45a7-98ab-fb35957d4bdb.jpg)">
+<img width="291" alt="image" src="https://user-images.githubusercontent.com/61650907/168495313-d8728589-a91c-45a7-98ab-fb35957d4bdb.jpg">
 
 So if you use this app for the first time you should press Register button so you get redicted to RegisterActivity
 
@@ -16,7 +16,7 @@ So if you use this app for the first time you should press Register button so yo
 Here you create a new recording in my Firebase
 In case of succesful registration your data is inserted and you instantly getting redicted to LearnFragment aka Learning Section
 If you are in this section but already have account in this app you can get to Login screen via button
-<img width="291" alt="image" src="![RegisterActivity](https://user-images.githubusercontent.com/61650907/168495320-a691681b-60da-4eca-89eb-6dcb4595df87.jpg)">
+<img width="291" alt="image" src="https://user-images.githubusercontent.com/61650907/168495320-a691681b-60da-4eca-89eb-6dcb4595df87.jpg">
 
 # Learning Section aka LearnFragment
 In this section your goal is to learn words and how they are written. Every word is gotten by query to local(!) Room database that is prepopulated on a first app entry.
