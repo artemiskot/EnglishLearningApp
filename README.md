@@ -2,7 +2,7 @@
 
 # App Architecture and stack
 This app was created on university Android development course so I tried to use MVVM structure, coroutines (stream in c++. It is thread safe in Kotlin so you get no violation error).
-Also used Flow<Object> type in Room DB that is made to replace Java's LiveData. It is also thread safe and helps not to get NPE(for those who knows xD).
+Also used Flow<Object> type in Room DB that is made to replace Java's LiveData<>. It is also thread safe and helps not to get NPE(for those who knows xD).
 
 # STARTING POINT aka Login screen
 At first we get into Login screen
