@@ -7,8 +7,8 @@ This app is created on Fragments so they all are used in the same MainActivity
 Each word represented in this app is an Entity which can be seen in [Word Entity](app/src/main/java/com/englishlearningapp/data/Word.kt)
 Queries are done by WordDao and could be seen [WordDao](app/src/main/java/com/englishlearningapp/data/WordDao.kt)
 Creation and Preporluation of Database is done by [WordDatabase](app/src/main/java/com/englishlearningapp/data/WordDatabase.kt) and is called in fragments section.
-Repository [WordRepository](app/src/main/java/com/englishlearningapp/data/WordRepository.kt) class abstracts access to multiple data sources 
-And the last but not the least :D is WordViewModel [WordViewModel](app/src/main/java/com/englishlearningapp/data/WordViewModel.kt) is created to provide data to UI. Its role is to act like communication center between Repository and the UI
+[WordRepository](app/src/main/java/com/englishlearningapp/data/WordRepository.kt) class abstracts access to multiple data sources 
+And the last but not the least :D is [WordViewModel](app/src/main/java/com/englishlearningapp/data/WordViewModel.kt) is created to provide data to UI. Its role is to act like communication center between Repository and the UI
 
 # STARTING POINT aka Login screen
 At first we get into Login screen
