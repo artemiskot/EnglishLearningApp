@@ -1,13 +1,13 @@
 # EnglishLearningApp README
 
 # App Architecture and stack
-This app was created on university Android development course so I tried to use MVVM structure, coroutines (stream in c++. It is thread safe in Kotlin so you get no violation error).
-Also used Flow <> type in Room DB that is made to replace Java's LiveData <>. It is also thread safe and helps not to get NPE(for those who knows xD).
-This app is created on Fragments so they all are used in the same MainActivity
-Each word represented in this app is an Entity which can be seen in [Word Entity](app/src/main/java/com/englishlearningapp/data/Word.kt)
-Queries are done by WordDao and could be seen [WordDao](app/src/main/java/com/englishlearningapp/data/WordDao.kt)
-Creation and Preporluation of Database is done by [WordDatabase](app/src/main/java/com/englishlearningapp/data/WordDatabase.kt) and is called in fragments section.
-[WordRepository](app/src/main/java/com/englishlearningapp/data/WordRepository.kt) class abstracts access to multiple data sources 
+This app was created on university Android development course so I tried to use MVVM structure, coroutines (stream in c++. It is thread safe in Kotlin so you get no violation error).\n
+Also used Flow <> type in Room DB that is made to replace Java's LiveData <>. It is also thread safe and helps not to get NPE(for those who knows xD). \n
+This app is created on Fragments so they all are used in the same MainActivity \n
+Each word represented in this app is an Entity which can be seen in [Word Entity](app/src/main/java/com/englishlearningapp/data/Word.kt) \n
+Queries are done by WordDao and could be seen [WordDao](app/src/main/java/com/englishlearningapp/data/WordDao.kt) \n
+Creation and Preporluation of Database is done by [WordDatabase](app/src/main/java/com/englishlearningapp/data/WordDatabase.kt) and is called in fragments section. \n
+[WordRepository](app/src/main/java/com/englishlearningapp/data/WordRepository.kt) class abstracts access to multiple data sources \n
 And the last but not the least :D is [WordViewModel](app/src/main/java/com/englishlearningapp/data/WordViewModel.kt) is created to provide data to UI. Its role is to act like communication center between Repository and the UI
 
 # STARTING POINT aka Login screen
