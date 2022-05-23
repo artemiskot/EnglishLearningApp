@@ -9,7 +9,7 @@ Queries are done by WordDao and could be seen [WordDao](app/src/main/java/com/en
 Creation and Preporluation of Database is done by [WordDatabase](app/src/main/java/com/englishlearningapp/data/WordDatabase.kt) and is called in fragments section.<br/>
 [WordRepository](app/src/main/java/com/englishlearningapp/data/WordRepository.kt) class abstracts access to multiple data sources <br/>
 And the last but not the least :D is [WordViewModel](app/src/main/java/com/englishlearningapp/data/WordViewModel.kt) is created to provide data to UI. Its role is to act like communication center between Repository and the UI <br/>
-This app may look kinda simple to other, but stack and architecture used in here is much more better and cleaner comaparing to others
+This app may look kinda simple but stack and architecture used in here is much more better and cleaner comaparing to others
 
 # STARTING POINT aka Login screen
 At first we get into Login screen
