@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.Statistics.StatisticsFragment">
 
+
     <TextView
         android:id="@+id/statsText"
         android:layout_width="match_parent"
@@ -19,4 +20,34 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <Button
+        android:id="@+id/insertWordBtn"
+        android:text="Insert new word"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintLeft_toRightOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+    <Button
+        android:id="@+id/getUserInfo"
+        android:text="Get User Info"
+        app:layout_constraintTop_toBottomOf="@id/statsText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+    <Button
+        android:id="@+id/getUserLearnInfo"
+        android:text="Get User Learn Statistics"
+        app:layout_constraintTop_toBottomOf="@id/getUserInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+    <Button
+        android:id="@+id/getUserPracticeInfo"
+        android:text="Get User Learn Statistics"
+        app:layout_constraintTop_toBottomOf="@id/getUserLearnInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

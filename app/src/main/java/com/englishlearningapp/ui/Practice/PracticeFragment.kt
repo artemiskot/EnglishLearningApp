@@ -9,22 +9,20 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import com.englishlearningapp.Word
+import com.englishlearningapp.data.MyDatabase
+import com.englishlearningapp.data.Word
 import com.englishlearningapp.data.WordDao
-import com.englishlearningapp.data.WordDatabase
 import com.englishlearningapp.data.WordViewModel
 import com.englishlearningapp.databinding.FragmentPracticeBinding
 import kotlinx.android.synthetic.main.fragment_practice.*
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-var correctWord: Int = 0
 var totalWords: Int = 0
 class PracticeFragment : Fragment() {
 
     private var _binding: FragmentPracticeBinding? = null
 
-    private lateinit var db: WordDatabase
+    private lateinit var db: MyDatabase
     private lateinit var dao: WordDao
     private lateinit var mWordViewModel: WordViewModel
 
@@ -53,7 +51,7 @@ class PracticeFragment : Fragment() {
             textView.text = it
         }
 
-        dao = WordDatabase.getInstance(requireContext()).getAppDao()
+        dao = MyDatabase.getInstance(requireContext()).wordDao()
 
         setButtonText()
 
@@ -75,11 +73,10 @@ class PracticeFragment : Fragment() {
 
     fun checkCorrect(answer: String){
         if(answer == randWord.RussianWord) {
-            Toast.makeText(activity, "Correct!", Toast.LENGTH_LONG).show()
-            correctWord +=1
+            Toast.makeText(activity, "Правильно!", Toast.LENGTH_SHORT).show()
         }
         else
-            Toast.makeText(activity, "Wrong :( answer was: $answer", Toast.LENGTH_LONG).show()
+            Toast.makeText(activity, "Неправильно :( Ответ был: $answer", Toast.LENGTH_SHORT).show()
         totalWords += 1
         setButtonText()
     }

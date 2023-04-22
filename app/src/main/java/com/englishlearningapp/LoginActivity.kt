@@ -3,25 +3,32 @@ package com.englishlearningapp
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
-import com.englishlearningapp.data.WordDao
-import com.englishlearningapp.data.WordDatabase
+import com.englishlearningapp.data.MyDatabase
+import com.englishlearningapp.data.UserDao
+import com.englishlearningapp.data.UserRepository
+import com.englishlearningapp.data.UserViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.coroutines.launch
-
 
 class LoginActivity : AppCompatActivity() {
-
-    private lateinit var db: WordDatabase
-    private lateinit var dao: WordDao
-
+    private lateinit var userViewModel: UserViewModel
+    private lateinit var userRepository: UserRepository
+    private lateinit var userDao: UserDao
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        userDao = MyDatabase.getInstance(this).userDao()
+        userRepository = UserRepository(userDao)
+        userViewModel = UserViewModel(userRepository)
+        val etLogin = findViewById<EditText>(R.id.et_login_email)
+        etLogin.setText("moderator@moderator.com")
+        val etPass = findViewById<EditText>(R.id.et_login_password)
+        etPass.setText("moderator")
         tv_register_new.setOnClickListener {
             startActivity(
                 Intent(
@@ -68,7 +75,7 @@ class LoginActivity : AppCompatActivity() {
                                     intent.flags =
                                         Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                     intent.putExtra("user_id", firebaseuser.uid)
-                                    intent.putExtra("email_id", firebaseuser.email)
+                                    intent.putExtra("email_id", email)
                                     startActivity(intent)
                                     finish()
                                 } else {

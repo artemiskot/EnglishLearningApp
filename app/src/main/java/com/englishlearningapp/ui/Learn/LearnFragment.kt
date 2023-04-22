@@ -1,38 +1,31 @@
 package com.englishlearningapp.ui.Learn
 
-import android.R
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import android.widget.Toast
-import androidx.annotation.AnyThread
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.room.Room
-import com.englishlearningapp.Word
-import com.englishlearningapp.data.WordDao
-import com.englishlearningapp.data.WordDatabase
-import com.englishlearningapp.data.WordViewModel
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.englishlearningapp.LearnModeActivity
+import com.englishlearningapp.R
+import com.englishlearningapp.data.*
 import com.englishlearningapp.databinding.FragmentLearnBinding
 import kotlinx.android.synthetic.main.fragment_learn.*
-import kotlinx.coroutines.delay
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
-
 class LearnFragment : Fragment() {
-    private lateinit var allWords: List<Word>
-    private lateinit var dao: WordDao
     private var _binding: FragmentLearnBinding? = null
-    private lateinit var mWordViewModel: WordViewModel
-    private lateinit var currentWord: Word
-    private lateinit var db: WordDatabase
+    private lateinit var moduleViewModel: ModuleViewModel
+    private lateinit var moduleRepository: ModuleRepository
+    private lateinit var moduleDao: ModuleDao
+    private lateinit var emailId:String
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -40,71 +33,39 @@ class LearnFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val learnViewModel =
-            ViewModelProvider(this).get(LearnViewModel::class.java)
-        _binding = FragmentLearnBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-
-        mWordViewModel =
-                ViewModelProvider(this).get(WordViewModel::class.java)
-
-        dao = WordDatabase.getInstance(requireContext()).getAppDao()
-
-        getWordDb()
-        binding.nextWord.setOnClickListener {
-            getWordDb()
-        }
-
-        return root
+        val db = MyDatabase.getInstance(requireContext())
+        moduleDao = MyDatabase.getInstance(requireContext()).moduleDao()
+        moduleRepository = ModuleRepository(moduleDao)
+        moduleViewModel = ModuleViewModel(moduleRepository)
+        return inflater.inflate(R.layout.fragment_learn, container, false)
     }
 
-    /* private fun getAllWords(){
-        lifecycleScope.launch(){
-            allWords = mWordViewModel.readAllData()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        emailId = arguments?.getString("email_id") ?: ""
+        val adapter = ModuleListAdapter { moduleId ->
+            // Navigate to the ModuleWordsActivity with moduleId as an extra
+            val intent = Intent(requireContext(), LearnModeActivity::class.java)
+            intent.putExtra("MODULE_ID", moduleId)
+            intent.putExtra("email_id", emailId)
+            startActivity(intent)
         }
-    } */
 
-    private fun setWord(){
-        text_word.text = currentWord.EnglishWord
-        text_word_translation.text = currentWord.RussianWord
+        moduleRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        moduleRecyclerView.adapter = adapter
+        moduleViewModel.allModules.observe(viewLifecycleOwner) { modules ->
+            adapter.submitList(modules)
+        }
 
-        currentWord = allWords.random()
-        allWords = allWords.minusElement(currentWord)
-        if(allWords.size == 1)
-            getWordDb()
     }
 
-    private fun insertWord(russianWord: String, englishWord: String) {
-        lifecycleScope.launch {
-            val word = Word(0,russianWord, englishWord)
-            dao.addWord(word)
-        }
-    }
-
-    private fun getWordDb(){
-        lifecycleScope.launch {
-            mWordViewModel.getRandomWord().collect { value: Word ->
-                currentWord = value
-                text_word.text = currentWord.EnglishWord
-                text_word_translation.text = currentWord.RussianWord
-            }
-        }
-    }
-
-    suspend fun <Word> Flow<List<Word>>.flattenToList() =
-        flatMapConcat { it.asFlow() }.toList()
-
-    fun writeDb(){
-        lifecycleScope.launch {
-            //currentWord =  mWordViewModel.getRandomWord()
-            text_word.text = currentWord.EnglishWord
-            text_word_translation.text = currentWord.RussianWord
-        }
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
 }

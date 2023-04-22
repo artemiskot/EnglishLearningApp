@@ -5,24 +5,25 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.auth.AuthResult
+import androidx.core.content.ContentProviderCompat.requireContext
+import com.englishlearningapp.data.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.activity_register.et_login_email
 import kotlinx.android.synthetic.main.activity_register.et_login_password
-import kotlinx.android.synthetic.main.activity_register.tv_register
-
 
 class RegisterActivity : AppCompatActivity() {
+    private lateinit var userViewModel: UserViewModel
+    private lateinit var userRepository: UserRepository
+    private lateinit var userDao: UserDao
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
+        userDao = MyDatabase.getInstance(this).userDao()
+        userRepository = UserRepository(userDao)
+        userViewModel = UserViewModel(userRepository)
         tv_login.setOnClickListener {
             onBackPressed()
         }
@@ -60,8 +61,10 @@ class RegisterActivity : AppCompatActivity() {
                                                 ).show()
                                                 val intent = Intent(this@RegisterActivity, MainActivity::class.java)
                                                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                                intent.putExtra("user_id",firebaseuser.uid)
-                                intent.putExtra("email_id", firebaseuser.email)
+                                val newUser = User(email = email, password = password, role = "user")
+                                userViewModel.insertUser(newUser)
+                                intent.putExtra("password",password)
+                                intent.putExtra("email_id", email)
                                 startActivity(intent)
                                 finish()
                             } else{
@@ -71,7 +74,6 @@ class RegisterActivity : AppCompatActivity() {
                                     Toast.LENGTH_SHORT
                                 ).show()
                             }
-
                         }
                 }
             }

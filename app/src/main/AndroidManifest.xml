@@ -9,10 +9,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EnglishLearningApp">
-        <activity
-            android:name=".bottomNavActivity"
-            android:exported="false"
-            android:label="@string/title_activity_bottom_nav" />
 
         <meta-data
             android:name="com.google.android.actions"
@@ -33,6 +29,10 @@
         <activity
             android:name=".MainActivity"
             android:exported="true" />
+        <activity android:name=".AddWordActivity"
+            android:exported="true"/>
+        <activity android:name=".LearnModeActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>
