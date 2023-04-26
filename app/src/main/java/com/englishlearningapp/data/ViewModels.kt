@@ -52,6 +52,12 @@ class WordViewModel(application: Application): AndroidViewModel(application) {
     fun getExactWord(english: String): Word{
         return repository.getExactWord(english)
     }
+
+    fun deleteWord(word: Word) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteWord(word)
+        }
+    }
 }
 class ModuleViewModel(private val repository: ModuleRepository) : ViewModel() {
 

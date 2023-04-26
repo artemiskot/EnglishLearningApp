@@ -21,7 +21,7 @@ import java.util.concurrent.Executors
         GameStatistics::class,
         Favourite::class
     ],
-    version = 6,
+    version = 9,
     exportSchema = false
 )
 abstract class MyDatabase : RoomDatabase() {

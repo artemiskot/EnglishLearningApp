@@ -3,6 +3,8 @@ package com.englishlearningapp.data
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
+import androidx.room.Update as Update
+
 //+
 
 @Dao
@@ -27,6 +29,9 @@ interface WordDao {
 
     @Query("SELECT * FROM word_table WHERE EnglishWord = :english")
     fun getExactWord(english: String): Word
+
+    @Delete
+    suspend fun deleteWord(word: Word)
 }
 
 
@@ -66,7 +71,7 @@ interface ModuleWordDao {
     fun getWordsByModule(moduleId: Int): Flow<List<Word>>
 
     @Query("SELECT * FROM module_table INNER JOIN module_word_table ON module_table.id = module_word_table.module_id WHERE module_word_table.word_id = :wordId")
-    fun getModulesByWord(wordId: Int): Flow<List<Module>>
+    fun getModulesByWord(wordId: Int): Flow<Module>
 }
 
 

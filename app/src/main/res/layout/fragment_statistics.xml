@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
     <Button
         android:id="@+id/insertWordBtn"
-        android:text="Insert new word"
+        android:text="Вставить новое слово"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintLeft_toRightOf="parent"
@@ -30,22 +30,29 @@
         android:layout_height="wrap_content"
         />
     <Button
+        android:id="@+id/getWordList"
+        android:text="Получить все слова"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/insertWordBtn"
+        />
+    <Button
         android:id="@+id/getUserInfo"
-        android:text="Get User Info"
+        android:text="Получить информацию о пользователе"
         app:layout_constraintTop_toBottomOf="@id/statsText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />
     <Button
         android:id="@+id/getUserLearnInfo"
-        android:text="Get User Learn Statistics"
+        android:text="Получить статистику изучения"
         app:layout_constraintTop_toBottomOf="@id/getUserInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />
     <Button
         android:id="@+id/getUserPracticeInfo"
-        android:text="Get User Learn Statistics"
+        android:text="Получить статистику игр"
         app:layout_constraintTop_toBottomOf="@id/getUserLearnInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

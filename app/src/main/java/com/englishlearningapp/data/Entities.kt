@@ -113,9 +113,9 @@ data class UserGameStatistics(
 
 @Entity(tableName = "game_statistics_table")
 data class GameStatistics(
-    @PrimaryKey(autoGenerate = true) val id: Int,
-    val total_learnt: Int,
-    val total_games: Int
+    @PrimaryKey(autoGenerate = true) val id: Int? = null,
+    var total_learnt: Int,
+    var total_games: Int
 )
 
 
@@ -133,7 +133,8 @@ data class GameStatistics(
         )
     ])
 data class Favourite(
-    @PrimaryKey(autoGenerate = true) val id: Int,
+    @PrimaryKey(autoGenerate = true) val id: Int? = null,
     val user_id: Int,
-    val word_id: Int
+    val word_id: Int,
+    val is_favorite:Boolean
 )

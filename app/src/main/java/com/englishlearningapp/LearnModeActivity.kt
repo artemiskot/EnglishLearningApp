@@ -15,6 +15,7 @@ import com.englishlearningapp.R
 import com.englishlearningapp.data.*
 import com.englishlearningapp.databinding.FragmentLearnBinding
 import kotlinx.android.synthetic.main.activity_add_word.*
+import kotlinx.android.synthetic.main.activity_learn_mode.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -38,11 +39,16 @@ class LearnModeActivity : AppCompatActivity() {
     private lateinit var mUserRepository: UserRepository
     private lateinit var mDaoUser: UserDao
 
+    private lateinit var mFavoriteViewModel: FavouriteViewModel
+    private lateinit var mFavoriteRepository: FavouriteRepository
+    private lateinit var mDaoFavorite: FavouriteDao
+
     private lateinit var currentWord: Word
     private lateinit var emailId:String
     private lateinit var db: MyDatabase
     private lateinit var wordList:List<Word>
     private lateinit var currentUser:User
+    private lateinit var currentFavorite:Favourite
     private var currentLearnStatistics: LearnStatistics? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -69,14 +75,23 @@ class LearnModeActivity : AppCompatActivity() {
         mUserRepository = UserRepository(mDaoUser)
         mUserViewModel = UserViewModel(mUserRepository)
 
+        mDaoFavorite = MyDatabase.getInstance(this).favouriteDao()
+        mFavoriteRepository = FavouriteRepository(mDaoFavorite)
+        mFavoriteViewModel = FavouriteViewModel(mFavoriteRepository)
+
         mWordViewModel.getWordsByModule(moduleId).observe(this) { words ->
             wordList = words
         }
+        favoriteButton.visibility = View.GONE
         getUserInfo()
         val nextWord:Button = findViewById<Button>(R.id.next_word)
         nextWord.text = "Начать изучение"
+        favoriteButton.setOnClickListener {
+            updateFavoriteWord()
+        }
         nextWord.setOnClickListener {
             nextWord.text = "Следующее слово"
+            favoriteButton.visibility = View.VISIBLE
             getWordDb(this)
         }
     }
@@ -86,6 +101,7 @@ class LearnModeActivity : AppCompatActivity() {
             if (!wordList.isEmpty()) {
                 insertLearnStatistics()
                 currentWord = wordList.random()
+                checkFavoriteWord()
                 wordList = wordList.filterNot { it == currentWord }
             } else {
                 Toast.makeText(context, "Все слова из этой категории выучены", LENGTH_SHORT).show()
@@ -93,6 +109,7 @@ class LearnModeActivity : AppCompatActivity() {
             }
             val engWord: TextView = findViewById<TextView>(R.id.text_word)
             val rusWord: TextView = findViewById<TextView>(R.id.text_word_translation)
+
             engWord.text = currentWord.EnglishWord
             rusWord.text = currentWord.RussianWord
         }
@@ -127,6 +144,30 @@ class LearnModeActivity : AppCompatActivity() {
             } else{
                 mLearnStatisticsViewModel.insertLearnStatistics(LearnStatistics(currentUser.id!!,1))
                 mUserLearnStatisticsViewModel.insertUserLearnStatistics(UserLearnStatistics(user_id = currentUser.id!!, learn_statistics_id = currentUser.id!!))
+            }
+        }
+    }
+    private fun checkFavoriteWord(){
+        lifecycleScope.launch{
+            mFavoriteViewModel.getFavourite(currentUser.id!!,currentWord.id!!).collect{
+                if(it==null){
+                    mFavoriteViewModel.insertFavourite(Favourite(user_id = currentUser.id!!, word_id = currentWord.id!!, is_favorite = false))
+                    currentFavorite = Favourite(user_id = currentUser.id!!, word_id = currentWord.id!!, is_favorite = false)
+                } else{
+                    currentFavorite = it
+                    favoriteButton.isChecked = currentFavorite.is_favorite
+                }
+            }
+        }
+    }
+    private fun updateFavoriteWord(){
+        lifecycleScope.launch {
+            if(favoriteButton.isChecked){
+                favoriteButton.isChecked = true
+                mFavoriteViewModel.updateFavourite(Favourite(currentFavorite.id,currentUser.id!!,currentWord.id!!,true))
+            } else{
+                favoriteButton.isChecked = false
+                mFavoriteViewModel.updateFavourite(Favourite(currentFavorite.id,currentUser.id!!,currentWord.id!!,false))
             }
         }
     }

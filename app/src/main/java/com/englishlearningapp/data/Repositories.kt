@@ -19,6 +19,10 @@ class WordRepository(private val wordDao: WordDao) {
         return wordDao.getWordsByModule(moduleId)
     }
     fun getExactWord(english:String): Word = wordDao.getExactWord(english)
+
+    suspend fun deleteWord(word: Word) {
+        wordDao.deleteWord(word)
+    }
 }
 class ModuleRepository(private val moduleDao: ModuleDao) {
     fun getAllModules() = moduleDao.getAllModules()

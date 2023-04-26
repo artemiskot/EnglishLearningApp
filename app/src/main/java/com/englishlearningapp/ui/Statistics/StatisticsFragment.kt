@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.englishlearningapp.databinding.FragmentStatisticsBinding
 import com.englishlearningapp.AddWordActivity
+import com.englishlearningapp.WordListActivity
 import com.englishlearningapp.data.*
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.coroutines.CoroutineScope
@@ -34,6 +35,10 @@ class StatisticsFragment : Fragment() {
     private lateinit var mLearnStatisticsViewModel: LearnStatisticsViewModel
     private lateinit var mLearnStatisticsRepository: LearnStatisticsRepository
     private lateinit var mLearnStatisticsDao: LearnStatisticsDao
+
+    private lateinit var mGameStatisticsViewModel: GameStatisticsViewModel
+    private lateinit var mGameStatisticsRepository: GameStatisticsRepository
+    private lateinit var mGameStatisticsDao: GameStatisticsDao
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -65,21 +70,33 @@ class StatisticsFragment : Fragment() {
         mLearnStatisticsDao = MyDatabase.getInstance(requireContext()).learnStatisticsDao()
         mLearnStatisticsRepository = LearnStatisticsRepository(mLearnStatisticsDao)
         mLearnStatisticsViewModel = LearnStatisticsViewModel(mLearnStatisticsRepository)
+
+        mGameStatisticsDao = MyDatabase.getInstance(requireContext()).gameStatisticsDao()
+        mGameStatisticsRepository = GameStatisticsRepository(mGameStatisticsDao)
+        mGameStatisticsViewModel = GameStatisticsViewModel(mGameStatisticsRepository)
+
         val insertButton = binding.insertWordBtn.setOnClickListener {
             val intent = Intent(requireActivity(), AddWordActivity::class.java)
             intent.putExtra("email_id",emailId)
             startActivity(intent)
         }
 
-
         binding.insertWordBtn.visibility = View.GONE
         binding.statsText.text = "Current user :${emailId}"
         getUserInfo()
+        binding.getWordList.setOnClickListener {
+            val intent = Intent(requireActivity(), WordListActivity::class.java)
+            intent.putExtra("email_id",emailId)
+            startActivity(intent)
+        }
         binding.getUserInfo.setOnClickListener {
             getUserInfo()
         }
         binding.getUserLearnInfo.setOnClickListener {
             getUserCurrentLearnStatistics()
+        }
+        binding.getUserPracticeInfo.setOnClickListener {
+            getUserCurrentGameStatistics()
         }
         return root
     }
@@ -89,7 +106,7 @@ class StatisticsFragment : Fragment() {
             mUserViewModel.getUserByEmail(emailId).collect(){
                 if(it!=null) {
                     currentUser = it
-                    binding.statsText.text = "Current user:${currentUser.email}, role:${currentUser.role}, password:${currentUser.password}"
+                    binding.statsText.text = "Текущий пользователь:${currentUser.email}, роль:${currentUser.role}, пароль:${currentUser.password}"
                     if(currentUser.role=="moderator")
                         binding.insertWordBtn.visibility = View.VISIBLE
                 }
@@ -101,9 +118,28 @@ class StatisticsFragment : Fragment() {
             mLearnStatisticsViewModel.getLearnStatisticsById(currentUser.id!!).collect{
                 currentLearnStatistics = it
                 if(it!=null) {
-                    binding.statsText.text = "Currently learnt: ${it.total_learnt} words"
+                    binding.statsText.text = "Всего выучено: ${it.total_learnt} слов"
                 } else {
                     Toast.makeText(activity,"На данный момент ни одного слова не изучено", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+    private fun getUserCurrentGameStatistics(){
+        /*mGameStatisticsViewModel.getGameStatisticsById(currentUser.id!!).observe(viewLifecycleOwner) { gameStatistics ->
+            if(gameStatistics!=null){
+                binding.statsText.text = "Всего игр сыграно: ${gameStatistics.total_games}, правильно угадано:${gameStatistics.total_learnt}"
+            } else {
+                Toast.makeText(activity,"На данный момент не было сыграно ни одной игры", Toast.LENGTH_SHORT).show()
+            }
+        }*/
+
+        lifecycleScope.launch {
+            mGameStatisticsViewModel.getGameStatisticsById(currentUser.id!!).collect{
+                if(it!=null){
+                    binding.statsText.text = "Всего игр сыграно: ${it.total_games}, правильно угадано:${it.total_learnt}"
+                } else {
+                    Toast.makeText(activity,"На данный момент не было сыграно ни одной игры", Toast.LENGTH_SHORT).show()
                 }
             }
         }

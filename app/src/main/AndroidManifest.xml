@@ -33,6 +33,10 @@
             android:exported="true"/>
         <activity android:name=".LearnModeActivity"
             android:exported="true"/>
+        <activity android:name=".GameModeActivity"
+            android:exported="true"/>
+        <activity android:name=".WordListActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>

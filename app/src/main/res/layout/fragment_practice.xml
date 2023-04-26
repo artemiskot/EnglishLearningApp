@@ -15,48 +15,18 @@
         android:layout_marginEnd="8dp"
         android:textAlignment="center"
         android:textSize="20sp"
-        android:text="Word will be here"
+        android:text="Start game with 1 minute time"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/word1"
+        android:id="@+id/startGame"
         android:layout_width="140dp"
         android:layout_height="70dp"
-        android:text="Button"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginRight="50dp"
-        app:layout_constraintRight_toLeftOf="@+id/word2"
-        app:layout_constraintTop_toBottomOf="@id/text_word_practice" />
-
-    <Button
-        android:id="@+id/word2"
-        android:layout_width="140dp"
-        android:layout_height="70dp"
-        android:text="Button"
+        android:text="Start Game"
+        app:layout_constraintTop_toBottomOf="@id/text_word_practice"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/word1"
-        app:layout_constraintTop_toBottomOf="@+id/text_word_practice" />
-
-    <Button
-        android:id="@+id/word3"
-        android:layout_width="140dp"
-        android:layout_height="70dp"
-        android:text="Button"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginRight="50dp"
-        app:layout_constraintRight_toLeftOf="@+id/word2"
-        app:layout_constraintTop_toBottomOf="@id/word1" />
-
-    <Button
-        android:id="@+id/word4"
-        android:layout_width="140dp"
-        android:layout_height="70dp"
-        android:text="Button"
-        app:layout_constraintLeft_toRightOf="@+id/word3"
-        android:layout_marginLeft="50dp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/word2" />
+        app:layout_constraintLeft_toLeftOf = "parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
